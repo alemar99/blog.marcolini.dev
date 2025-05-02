@@ -1,0 +1,71 @@
+---
+import Container from "@components/Container.astro";
+import { SITE } from "@consts";
+import BackToTop from "@components/BackToTop.astro";
+---
+
+<footer class="animate">
+  <Container>
+    <div class="relative">
+      <div class="absolute right-0 -top-20">
+        <BackToTop />
+      </div>
+    </div>
+    <div class="flex items-center justify-between">
+        <p>
+    &copy; 2025 {SITE.NAME}
+        </p>
+        <div class="flex space-x-4">
+      <!-- GitHub -->
+      <a href="https://github.com/alemar99" target="_blank" aria-label="GitHub" class="hover:text-black">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 
+                   0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
+                   0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61 
+                   -.546-1.387-1.333-1.757-1.333-1.757 
+                   -1.09-.745.083-.729.083-.729 
+                   1.205.084 1.84 1.236 1.84 1.236 
+                   1.07 1.835 2.807 1.305 3.495.998 
+                   .108-.776.42-1.305.763-1.605 
+                   -2.665-.3-5.466-1.334-5.466-5.93 
+                   0-1.31.47-2.38 1.236-3.22 
+                   -.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23 
+                   .96-.267 1.98-.399 3-.405 
+                   1.02.006 2.04.138 3 .405 
+                   2.28-1.552 3.285-1.23 3.285-1.23 
+                   .645 1.653.24 2.873.12 3.176 
+                   .765.84 1.23 1.91 1.23 3.22 
+                   0 4.61-2.805 5.625-5.475 5.92 
+                   .435.375.81 1.096.81 2.22 
+                   0 1.606-.015 2.896-.015 3.286 
+                   0 .315.21.694.825.576C20.565 22.092 24 17.592 24 12.297 
+                   c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/alessandro-marcolini" target="_blank" aria-label="LinkedIn" class="hover:text-blue-600">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.23 0H1.77C.792 0 0 .774 0 1.727v20.546C0 23.226.792 24 
+                   1.77 24h20.46c.978 0 1.77-.774 1.77-1.727V1.727C24 
+                   .774 23.208 0 22.23 0zM7.12 20.452H3.56V9h3.56v11.452zM5.34 
+                   7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 
+                   0 4.124zM20.452 20.452h-3.555v-5.605c0-1.336-.026-3.056-1.862-3.056 
+                   -1.865 0-2.15 1.455-2.15 2.958v5.703h-3.555V9h3.414v1.561h.048c.476-.9 
+                   1.637-1.85 3.37-1.85 3.6 0 4.265 2.37 4.265 5.455v6.286z"/>
+        </svg>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:alessandro@marcolini.dev" aria-label="Email" class="hover:text-red-500">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 
+                   1.1.9 2 2 2h16c1.1 0 2-.9 
+                   2-2V6c0-1.1-.9-2-2-2zm0 
+                   4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+    </div>
+    </div>
+  </Container>
+</footer>

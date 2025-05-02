@@ -1,0 +1,87 @@
+---
+import Container from "@components/Container.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import Link from "@components/Link.astro";
+import { ABOUT, SITE, SOCIALS } from "@consts";
+---
+<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <Container>
+
+    <h4 class="animate font-semibold text-black dark:text-white">
+      About me
+    </h4>
+    <div class="space-y-16">
+      <section>
+        <article class="space-y-4">
+        <div class="clearfix">
+      <img 
+      src="/me.png" 
+        alt="Profile Photo" 
+        class="rounded-full sm:float-right sm:ml-6  w-40 h-40 object-cover animate"
+      />
+          <div>
+          <p class="animate">
+          Hi! I’m <span class="font-bold">Alessandro Marcolini</span> (<span class="italic">alemar99</span> on the internet) — a software engineer at
+            <Link href="https://canonical.com" aria-label="Canonical website" external>
+              Canonical 
+            </Link>, where I work on the 
+            <Link href="https://github.com/canonical/maas" aria-label="MAAS on Github" external>
+              MAAS 
+            </Link> (Metal As A Service) team. 
+          </p>
+          <p class="animate">
+            I’m passionate about coding and always eager to learn, experiment, and apply new technologies.
+          </p>
+          <p class="animate">
+          While I was in university, I developed a strong interest in cybersecurity. I was both a participant and later a tutor to the
+          <Link href="https://cyberchallenge.it/en" aria-label="CyberChallenge website" external>
+          CyberChallenge.it
+          </Link>
+          project. I've also participated in several CTFs and I still do from time to time.
+
+          </p>
+          <p class="animate">
+          I'm a big fan of open source too, and as part of my master's degree thesis, I've contributed a bit to the Linux kernel (you can find the commits 
+          <Link href="https://github.com/torvalds/linux/commit/0efc7e541fd51ed11a328c43ccf10a12f1727746" aria-label="taprio flagsnvalidation commit" external>here
+          </Link> and 
+          <Link href="https://github.com/torvalds/linux/commit/2813ca8d64906d744da5e4fb3f47f692549c5d5b" aria-label="ynl multi-attr encoding support" external>here
+          </Link>
+          )
+          </p>
+          <p class="animate">
+            When I’m not in front of a terminal, I love staying active — especially playing volleyball. I also fly FPV drones... though yes, technically that still involves staring at a screen!
+          </p>
+          </div>
+        </div>
+        </article>
+      </section>
+      <section class="animate space-y-4">
+        <h5 class="font-semibold text-black dark:text-white">
+          Let's Connect
+        </h5>
+        <article>
+          <p>
+            If you want to get in touch with me about something or just to say hi,
+            reach out on social media or send me an email.
+          </p>
+        </article>
+        <ul class="flex flex-wrap gap-2">
+          {SOCIALS.map(SOCIAL => (
+            <li class="flex gap-x-2 text-nowrap">
+              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
+                {SOCIAL.NAME}
+              </Link>
+              {"/"}
+            </li>
+          ))}
+          <li class="line-clamp-1">
+            <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.NAME}`}>
+              {SITE.EMAIL}
+            </Link>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </Container>
+</PageLayout>
+
