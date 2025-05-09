@@ -1,6 +1,6 @@
 ---
-title: "Automatically generate pydantic models with optional fields"
-description: "It's easier with a script ;)"
+title: "How to generate Pydantic models with optional fields"
+description: "Learn how to make all fields optional starting from an existing model."
 date: "May 6 2025"
 ---
 
@@ -19,7 +19,7 @@ class User(BaseModel):
 
 This model mirrors the structure of your database. So far, so good.
 
-Now, say you want to create a new User. You can’t provide the `id` up front -- it gets generated when the user is created. So, you define a new model:
+Now, say you want to create a new `User`. You can’t provide the `id` up front -- it gets generated when the user is created. So, you define a new model:
 ```python
 class UserCreate(BaseModel):
 	name: str
@@ -33,11 +33,13 @@ class UserUpdate(BaseModel):
 	last_name: str | None
 ```
 
-Now you’re repeating fields across multiple classes. Every time the original User model changes, you have to manually update `UserCreate` and `UserUpdate` to stay in sync. If your app has lots of models, this quickly becomes tedious—and error-prone.
+Now you’re repeating fields across multiple classes. Every time the original `User` model changes, you have to manually update `UserCreate` and `UserUpdate` to stay in sync. If your app has lots of models, this quickly becomes tedious—and error-prone.
 
 # A first possible solution
 After browsing a bit on the internet, I found [this issue](https://github.com/pydantic/pydantic/issues/3120) in Pydantic's github repository. It addresses exactly this pain point: how to derive a version of an existing model where all fields are optional.
+
 Here’s the workaround suggested in the thread:
+
 ```python
 from copy import deepcopy
 from typing import Any, Optional, Tuple, Type, TypeVar
@@ -82,10 +84,18 @@ print(PartialUser(first_name='Adrian'))
 The proposed solution works, but there's a catch: you won't get any help from type hints, because `PartialUser` is considered of type `type[User]`. For that, you'll also get linting errors when not specifying all the parameters like: `Argument missing for parameter "last_name"`.
 
 # A better solution
-Since, doing this in a dynamic way is not possible because we will lose the benefits of type hints, I came up with a different idea. What if we could code-generate the models with optional fields, starting from the original model in a programmatic way?
+Since doing this in a dynamic way would sacrifice type hints, I came up with a different idea. What if we could **generate these partial models programmatically**, starting from the original model?
 
-Here is my solution to the problem: a script that scans the pydantic models defined under the `MODELS_PATH` and generates a model inside the `PARTIAL_MODELS_PATH` which has the same set of fields, with the same type hints, but all of them are optional.
+That’s exactly what my solution does: it's a script that scans your Pydantic models and creates copies where all fields are preserved -- including type hints -- but made optional.
+
+## Key Features
+- Supports both **Pydantic v1** and **Pydantic v2**
+- **Automatically generates** partial models from existing ones
+- **Detects changes** in model name, field names, or types to determine whether regeneration is needed
+- Use a simple `@generate_partial` decorator to flag models for generation
+- Add **custom methods** to the generated models without worrying about overwrites
+- Includes a base class for partial models where you can define shared logic or behavior
 
 
-You can see the script, together with a minimal working example in the [dedicated github repository](https://github.com/alemar99/pydantic-optional-models).
+You can find the script and a minimal working example in the [dedicated GitHub repository](https://github.com/alemar99/pydantic-optional-models).
 
