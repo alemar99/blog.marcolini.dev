@@ -19,7 +19,7 @@ class User(BaseModel):
 
 This model mirrors the structure of your database. So far, so good.
 
-Now, say you want to create a new `User`. You can’t provide the `id` up front -- it gets generated when the user is created. So, you define a new model:
+Now, say you want to create a new `User`. You can’t provide the `id` up front - it gets generated when the user is created. So, you define a new model:
 ```python
 class UserCreate(BaseModel):
 	name: str
@@ -33,7 +33,7 @@ class UserUpdate(BaseModel):
 	last_name: str | None
 ```
 
-Now you’re repeating fields across multiple classes. Every time the original `User` model changes, you have to manually update `UserCreate` and `UserUpdate` to stay in sync. If your app has lots of models, this quickly becomes tedious—and error-prone.
+Now you’re repeating fields across multiple classes. Every time the original `User` model changes, you have to manually update `UserCreate` and `UserUpdate` to stay in sync. If your app has lots of models, this quickly becomes tedious and error-prone.
 
 # A first possible solution
 After browsing a bit on the internet, I found [this issue](https://github.com/pydantic/pydantic/issues/3120) in Pydantic's github repository. It addresses exactly this pain point: how to derive a version of an existing model where all fields are optional.
@@ -86,7 +86,7 @@ The proposed solution works, but there's a catch: you won't get any help from ty
 # A better solution
 Since doing this in a dynamic way would sacrifice type hints, I came up with a different idea. What if we could **generate these partial models programmatically**, starting from the original model?
 
-That’s exactly what my solution does: it's a script that scans your Pydantic models and creates copies where all fields are preserved -- including type hints -- but made optional.
+That’s exactly what my solution does: it's a script that scans your Pydantic models and creates copies where all fields are preserved - including type hints -- but made optional.
 
 ## Key Features
 - Supports both **Pydantic v1** and **Pydantic v2**
