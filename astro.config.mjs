@@ -3,12 +3,16 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: "https://marcolini.dev",
   integrations: [mdx(), sitemap()],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
   markdown: {
     shikiConfig: {
       themes: {
@@ -17,4 +21,6 @@ export default defineConfig({
       },
     },
   },
+
+  adapter: cloudflare(),
 });
