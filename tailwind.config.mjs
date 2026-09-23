@@ -10,23 +10,24 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#f5f8f7',
-          100: '#ddeae6',
-          200: '#bbd4cd',
-          300: '#91b7ae',
-          400: '#6a978d',
-          500: '#507c73',
-          600: '#466e67',
-          700: '#35504c',
-          800: '#2d423e',
-          900: '#293836',
-          950: '#141f1e',
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+          950: '#431407',
         }
       },
 
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        serif: ["Lora", ...defaultTheme.fontFamily.serif],
+        reading: ["Atkinson", ...defaultTheme.fontFamily.sans],
+        brand: ["Atkinson", ...defaultTheme.fontFamily.sans],
       },
     },
   },
